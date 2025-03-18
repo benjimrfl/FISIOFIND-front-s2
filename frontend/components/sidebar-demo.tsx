@@ -86,6 +86,13 @@ export function SidebarDemo() {
         <IconPhone className="text-[#253240] h-5 w-5 flex-shrink-0 mx-auto" />
       ),
     },
+    {
+      label: "Cuestionarios",
+      href: "/cuestionario",
+      icon: (
+        <IconPhone className="text-[#253240] h-5 w-5 flex-shrink-0 mx-auto" />
+      ),
+    },
   ];
 
   return (
