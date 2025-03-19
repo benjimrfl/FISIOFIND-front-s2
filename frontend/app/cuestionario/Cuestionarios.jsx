@@ -61,14 +61,21 @@ const QuestionnaireBuilder = ({ addQuestionnaire, editingQuestionnaire }) => {
   };
 
   return (
-    <div style={{ padding: '20px', border: '1px solid #ccc', borderRadius: '8px' }}>
-      <h2>{editingQuestionnaire ? 'Editar Cuestionario' : 'Nuevo Cuestionario'}</h2>
+    <div style={{ padding: '20px', border: '1px solid #ccc', borderRadius: '8px', backgroundColor: '#f9f9f9' }}>
+      <h2 style={{ fontSize: '24px', marginBottom: '1rem' }}>{editingQuestionnaire ? 'Editar Cuestionario' : 'Nuevo Cuestionario'}</h2>
 
       <input
         placeholder="Título del cuestionario"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        style={{ marginBottom: '1rem', width: '100%' }}
+        style={{
+          marginBottom: '1rem',
+          width: '100%',
+          padding: '12px',
+          fontSize: '16px',
+          borderRadius: '8px',
+          border: '1px solid #ccc'
+        }}
       />
 
       <div style={{ marginBottom: '1rem' }}>
@@ -76,13 +83,26 @@ const QuestionnaireBuilder = ({ addQuestionnaire, editingQuestionnaire }) => {
           placeholder="Pregunta (Ej: ¿Dónde te duele?)"
           value={newQuestion.label}
           onChange={(e) => setNewQuestion({ ...newQuestion, label: e.target.value })}
-          style={{ marginRight: '1rem' }}
+          style={{
+            marginRight: '1rem',
+            padding: '12px',
+            fontSize: '16px',
+            borderRadius: '8px',
+            border: '1px solid #ccc',
+            width: '100%'
+          }}
         />
 
         <select
           value={newQuestion.type}
           onChange={(e) => setNewQuestion({ ...newQuestion, type: e.target.value })}
-          style={{ marginRight: '1rem' }}
+          style={{
+            padding: '12px',
+            fontSize: '16px',
+            borderRadius: '8px',
+            border: '1px solid #ccc',
+            marginRight: '1rem'
+          }}
         >
           {questionTypes.map((qt) => (
             <option key={qt.value} value={qt.value}>{qt.label}</option>
@@ -94,26 +114,66 @@ const QuestionnaireBuilder = ({ addQuestionnaire, editingQuestionnaire }) => {
             placeholder="Opciones separadas por coma (Ej: Leve,Moderado,Severo)"
             value={newQuestion.options.join(',')}
             onChange={(e) => setNewQuestion({ ...newQuestion, options: e.target.value.split(',') })}
-            style={{ width: '100%', marginTop: '0.5rem' }}
+            style={{
+              width: '100%',
+              marginTop: '0.5rem',
+              padding: '12px',
+              fontSize: '16px',
+              borderRadius: '8px',
+              border: '1px solid #ccc'
+            }}
           />
         )}
 
-        <button onClick={addQuestion} style={{ marginTop: '0.5rem' }}>Añadir pregunta</button>
+        <button
+          onClick={addQuestion}
+          style={{
+            backgroundColor: '#1976d2',
+            color: '#fff',
+            padding: '12px 24px',
+            border: 'none',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            marginTop: '0.5rem',
+            fontSize: '16px'
+          }}
+        >
+          Añadir pregunta
+        </button>
       </div>
 
-      <h3>Preguntas Añadidas:</h3>
+      <h3 style={{ fontSize: '20px', marginBottom: '1rem' }}>Preguntas Añadidas:</h3>
       <ul>
         {questions.map((q, index) => (
-          <li key={index}>
+          <li key={index} style={{
+            backgroundColor: '#f9f9f9',
+            padding: '1rem',
+            borderRadius: '8px',
+            border: '1px solid #ddd',
+            marginBottom: '1rem'
+          }}>
             <input
               value={q.label}
               onChange={(e) => updateQuestion(index, 'label', e.target.value)}
-              style={{ marginRight: '1rem' }}
+              style={{
+                marginRight: '1rem',
+                padding: '12px',
+                fontSize: '16px',
+                borderRadius: '8px',
+                border: '1px solid #ccc',
+                width: '100%'
+              }}
             />
             <select
               value={q.type}
               onChange={(e) => updateQuestion(index, 'type', e.target.value)}
-              style={{ marginRight: '1rem' }}
+              style={{
+                padding: '12px',
+                fontSize: '16px',
+                borderRadius: '8px',
+                border: '1px solid #ccc',
+                marginRight: '1rem'
+              }}
             >
               {questionTypes.map((qt) => (
                 <option key={qt.value} value={qt.value}>{qt.label}</option>
@@ -124,14 +184,49 @@ const QuestionnaireBuilder = ({ addQuestionnaire, editingQuestionnaire }) => {
                 placeholder="Opciones (coma)"
                 value={q.options.join(',')}
                 onChange={(e) => updateQuestion(index, 'options', e.target.value.split(','))}
+                style={{
+                  padding: '12px',
+                  fontSize: '16px',
+                  borderRadius: '8px',
+                  border: '1px solid #ccc',
+                  marginTop: '0.5rem'
+                }}
               />
             )}
-            <button onClick={() => deleteQuestion(index)} style={{ marginLeft: '1rem' }}>Eliminar</button>
+            <button
+              onClick={() => deleteQuestion(index)}
+              style={{
+                backgroundColor: '#d32f2f',
+                color: '#fff',
+                padding: '8px 16px',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                marginLeft: '1rem'
+              }}
+              onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#b71c1c'}
+              onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#d32f2f'}
+            >
+              Eliminar
+            </button>
           </li>
         ))}
       </ul>
 
-      <button onClick={generateQuestionnaire} style={{ marginTop: '1rem' }}>
+      <button
+        onClick={generateQuestionnaire}
+        style={{
+          backgroundColor: '#2e7d32',
+          color: '#fff',
+          padding: '12px 24px',
+          border: 'none',
+          borderRadius: '8px',
+          cursor: 'pointer',
+          fontWeight: 'bold',
+          fontSize: '16px',
+          marginTop: '1rem'
+        }}
+      >
         {editingQuestionnaire ? 'Actualizar Cuestionario' : 'Generar Cuestionario'}
       </button>
     </div>
