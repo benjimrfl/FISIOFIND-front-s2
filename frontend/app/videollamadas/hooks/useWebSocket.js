@@ -21,8 +21,10 @@ const useWebSocket = (roomCode, userRole, initialMessageHandler) => {
   const connectWebSocket = useCallback(() => {
     console.log(`Conectando al WebSocket: ws://localhost:8000/ws/room/${roomCode}/`);
     
-    // Use wss:// for production, ws:// for local development
-    const socket = new WebSocket(`ws://localhost:8000/ws/room/${roomCode}/`);
+    const isProduction = window.location.protocol === 'https:';
+    const wsProtocol = isProduction ? 'wss://' : 'ws://';
+    const wsHost = isProduction ? window.location.host : 'localhost:8000';
+    const socket = new WebSocket(`${wsProtocol}${wsHost}/ws/room/${roomCode}/`);
     
     socket.onopen = () => {
       console.log('Conectado al WebSocket');

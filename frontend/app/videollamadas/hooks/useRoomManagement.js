@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import axios from 'axios';
 import { getApiBaseUrl } from "@/utils/api";
 
@@ -27,7 +27,8 @@ const useRoomManagement = ({
   const [showDeleteButtons, setShowDeleteButtons] = useState(false);
   const [waitingForDeletion, setWaitingForDeletion] = useState(false);
   const [isClient, setIsClient] = useState(false);
-  const [token, setToken] = useState < string | null > (null);
+  const [token, setToken] = useState(null);
+
 
   useEffect(() => {
     setIsClient(true);
