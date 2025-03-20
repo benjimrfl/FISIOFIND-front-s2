@@ -23,7 +23,7 @@ const useWebSocket = (roomCode, userRole, initialMessageHandler) => {
     
     const isProduction = window.location.protocol === 'https:';
     const wsProtocol = isProduction ? 'wss://' : 'ws://';
-    const wsHost = isProduction ? process.env.NEXT_PUBLIC_API_URL : 'localhost:8000';
+    const wsHost = isProduction ? process.env.NEXT_PUBLIC_API_URL.replace(/^https?:\/\//, '') : 'localhost:8000';
     const socket = new WebSocket(`${wsProtocol}${wsHost}/ws/room/${roomCode}/`);
     
     socket.onopen = () => {
