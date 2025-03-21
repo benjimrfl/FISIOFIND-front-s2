@@ -213,7 +213,7 @@ const FisioProfile = () => {
             
             formData.append("services", JSON.stringify(services));
 
-            const response = await axios.post(`${getApiBaseUrl()}/api/app_user/physio/update/`, formData, {
+            const response = await axios.put(`${getApiBaseUrl()}/api/app_user/physio/update/`, formData, {
                 headers: { Authorization: "Bearer " + token, "Content-Type": "multipart/form-data" },
             });
 
