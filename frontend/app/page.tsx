@@ -29,7 +29,7 @@ const Home = () => {
   const closePhysioModal = () => setIsPhysioModalOpen(false);
   const [isClient, setIsClient] = useState(false);
   const [token, setToken] = useState<string | null>(null);
-
+  const apiBaseurl = getApiBaseUrl();
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -148,7 +148,7 @@ const Home = () => {
       }
 
       try {
-        const searchUrl = `${getApiBaseUrl()}/api/sesion_invitado/physios-with-specializations/?specialization=${specialization}`;
+        const searchUrl = `${apiBaseurl}/api/sesion_invitado/physios-with-specializations/?specialization=${specialization}`;
         const response = await axios.get(searchUrl);
 
         if (response.status === 200) {

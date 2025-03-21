@@ -7,18 +7,19 @@ import WizardNavigation from "./WizardNavigation";
 import { Service, Step } from "@/lib/definitions";
 import { AppointmentProvider } from "@/context/appointmentContext"; // Asegúrate de ajustar la ruta
 import axios from "axios";
+import {getApiBaseUrl} from "@/utils/api";
 
 const Wizard: React.FC<{ steps: Step[], token: string | null, isClient: boolean}> = ({ steps, token, isClient }) => {
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [services, setServices] = useState<Service[]>([]);
-  
+
   React.useEffect(() => {
     const fetchServices = async () => {
       try {
         const urlParts = window.location.pathname.split('/');
         const physio_id = urlParts[urlParts.length - 1];
         if (physio_id && token) {
-          const response = await axios.get(`http://localhost:8000/api/app_user/services/${physio_id}/`, {
+          const response = await axios.get(`${getApiBaseUrl()}/api/app_user/services/${physio_id}/`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
