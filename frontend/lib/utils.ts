@@ -7,7 +7,9 @@ export function cn(...inputs: ClassValue[]) {
 
 export function formatAppointment(isoString: string): { date: string; time: string } {
   if (!isoString) return { date: "", time: "" };
+  
   const date = new Date(isoString);
+
   return {
     date: date.toLocaleDateString("es-ES", {
       weekday: "long",
@@ -15,12 +17,10 @@ export function formatAppointment(isoString: string): { date: string; time: stri
       month: "long",
       year: "numeric",
     }),
-    time: date.toLocaleTimeString("es-ES", {
-      hour: "2-digit",
-      minute: "2-digit",
-    }),
+    time: date.toISOString().split("T")[1].slice(0, 5), // Extrae la hora en formato HH:MM UTC
   };
 }
+
 
 export function prepareScheduleForBackend(schedule) {
   // Transformar weekly_schedule
@@ -46,3 +46,13 @@ export function prepareScheduleForBackend(schedule) {
     weekly_schedule 
   };
 };
+
+
+export function formatDateFromIso(isoDate: string): string {
+  const date = new Date(isoDate);
+
+  // Formateamos la fecha en "DD-MM-YYYY HH:mm" pero en UTC
+  const formattedDate = `${String(date.getUTCDate()).padStart(2, '0')}-${String(date.getUTCMonth() + 1).padStart(2, '0')}-${date.getUTCFullYear()} ${String(date.getUTCHours()).padStart(2, '0')}:${String(date.getUTCMinutes()).padStart(2, '0')}`;
+
+  return formattedDate;
+}

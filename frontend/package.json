@@ -16,6 +16,8 @@
     "@fullcalendar/list": "^6.1.15",
     "@fullcalendar/react": "^6.1.15",
     "@fullcalendar/timegrid": "^6.1.15",
+    "@react-three/drei": "^10.0.4",
+    "@react-three/fiber": "^9.1.0",
     "@tabler/icons-react": "^3.31.0",
     "axios": "^1.8.2",
     "bootstrap5": "^1.1.9",
@@ -32,7 +34,8 @@
     "react-dom": "^19.0.0",
     "sass": "^1.85.1",
     "tailwind-merge": "^3.0.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "three": "^0.174.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

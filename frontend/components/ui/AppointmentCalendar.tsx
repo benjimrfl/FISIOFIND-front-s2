@@ -210,8 +210,10 @@ const AppointmentCalendar: React.FC<AppointmentCalendarProps> = ({
   const handleSlotClick = (slot: string) => {
     if (!selectedDate) return;
     setSelectedSlot(slot);
+    console.log("selectedDate", slot);
 
     const startISO = combineDateAndTimeToISO(selectedDate, slot);
+    console.log("startISO", startISO);
     const endISO = addMinutesToISO(startISO, serviceDuration);
     dispatch({
       type: "SELECT_SLOT",
