@@ -357,7 +357,7 @@ const Home = () => {
           </div>
         </div>
         <Image
-          src="/static/logo_fisio_find_smaller.png"
+          src="/static/logo_fisio_find_smaller.webp"
           alt="Fisio Find Logo"
           width={150}
           height={150}
