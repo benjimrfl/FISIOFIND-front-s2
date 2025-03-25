@@ -1,13 +1,15 @@
 "use client";
 
 import React, { useState, useCallback } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import Image from "next/image";
 import { getApiBaseUrl } from "@/utils/api";
 
 export default function LoginPaciente() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectUrl = searchParams.get("redirect") || "/";
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -33,7 +35,7 @@ export default function LoginPaciente() {
         localStorage.setItem("token", response.data.access);
         setMessage("Inicio de sesión exitoso");
         setTimeout(() => {
-          router.push("/");
+          router.push(redirectUrl);
         }, 500);
       }
     } catch (error: any) {
